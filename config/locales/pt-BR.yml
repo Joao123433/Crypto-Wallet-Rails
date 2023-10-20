@@ -10,6 +10,10 @@ pt-BR:
     delete: "Deletar"
     new: "Nova"
     back: "Voltar"
+    home: Página Inicial
+  languages:
+    portuguese: Português
+    english: Inglês
   new:
     coin: Nova Moeda
     mining_type: Novo Tipo de Mineração

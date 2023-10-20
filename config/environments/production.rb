@@ -7,7 +7,6 @@ Rails.application.configure do
   config.cache_classes = true
 
   # config/environments/production.rb
-  config.active_record.database_configurations = { production: { adapter: 'sqlite3', database: 'db/production.sqlite3' } }
 
   # Eager load code on boot. This eager loads most of Rails and
   # your application in memory, allowing both threaded web servers

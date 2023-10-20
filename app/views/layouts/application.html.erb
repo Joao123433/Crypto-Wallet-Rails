@@ -16,11 +16,14 @@
   <body>
     <div class='container-fluid'>
       <ul class="nav justify-content-end">
-        <li class="nav-item">
-          <%= link_to "Português", request.path << '?locale=pt-BR', class: 'nav-link' %>
+        <li class='nav-item'>
+          <%= link_to t('links.home'), root_path, class: 'nav-link' %>
         </li>
         <li class="nav-item">
-          <%= link_to "English", request.path << '?locale=en', class: 'nav-link' %>
+          <%= link_to t('languages.portuguese'), request.path << '?locale=pt-BR', class: 'nav-link' %>
+        </li>
+        <li class="nav-item">
+          <%= link_to t('languages.english'), request.path << '?locale=en', class: 'nav-link' %>
         </li>
       </ul>
       <%= yield %>

@@ -10,6 +10,10 @@ en:
     delete: "Delete"
     back: "Back"
     new: "New"
+    home: Home
+  languages:
+    portuguese: Brazilian Portuguese
+    english: English
   new:
     coin: New Coin
     mining_type: New Mining Type
