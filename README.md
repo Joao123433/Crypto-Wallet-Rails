@@ -1,24 +1,39 @@
-# README
+# Aplicação Rails 7 com SQLite3
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## Projeto desenvolvido durante o Curso de Rails do Jackson Pires
 
-Things you may want to cover:
+Este projeto é resultado do curso de Rails 7 oferecido por Curso Ruby on Rails 5.x - Do início ao fim!. Durante o curso, exploramos os conceitos fundamentais do desenvolvimento web com Ruby on Rails e utilizamos o banco de dados SQLite3 para persistência de dados.
 
-* Ruby version
+## Acesse o Projeto em
 
-* System dependencies
+https://crypto-wallet-rails.fly.dev
 
-* Configuration
+## Pré-requisitos caso deseja fazer um form
+Certifique-se de ter as seguintes ferramentas instaladas em sua máquina:
 
-* Database creation
+- Ruby (versão 3.2.2 recomendada)
+- Rails (versão 7.0.8 recomendada)
+- SQLite3
 
-* Database initialization
+Recomendo o uso do [ASDF](https://asdf-vm.com/) para gerenciar versões do Ruby.
 
-* How to run the test suite
+## Configuração do Ambiente
 
-* Services (job queues, cache servers, search engines, etc.)
+1. Clone este repositório:
+   ```bash
+   git clone https://github.com/seu-usuario/nome-do-projeto.git
+   cd nome-do-projeto
 
-* Deployment instructions
+2. Instale as Dependências
+    gem install bundler
+    bundle
+    yarn install
 
-* ...
+3. Crie e Migre o Banco de Dados
+    rails db:create
+    rails db:migrate
+
+4. Inicie o Servido
+    rails s
+
+# Acesse a aplicação em http://localhost:3000.
