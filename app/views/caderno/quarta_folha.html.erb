@@ -1,0 +1,42 @@
+<h1>Conectando as duas tabelas</h1>
+<p>Para adicionar mais um campo na tabela, basta criar uma nova migracao para o novo campo que sera adicionado na tabela de moedas(coins)</p>
+<p>Basta utilizar "rails g migration AddNomeDaMigration nome_do_campos:tipo_de_dados", o nome segue algumas regras,AddXXXToYYY para adicionar uma campo, RemoveXXXToYYY para remover um campo, nesse exemplo o nome sera AddMiningTypeToCoins, com coins no plural pois esta referenciando a tabela no banco de dados, tabelas sempre sao no plural</p>
+<p>O nome da migration sempre sera escrito no padrao CamelCase e o nome do campo sempre em snake_case</p>
+<p>Apos tudo isso basta rodas "rails db"migrate" para que as alteracoes sejam aplicadas ao banco de dados</p>
+
+<hr>
+
+<h1>Associacao belongs_to</h1>
+<p>Por conversao o rails exige que o campo que vai se relacionar com a tabela tenha o mesmo nome no singular ex: mining_type como nome do campo e mining_types com nome da tabela, coin e coins</p>
+<p>No rails todos os campos que terminam com _id e uma chave estrangeira e aponta para fora</p>
+<p>belongs_to na traducao fica "pertence a",  e uma forma de dizer pro model Coin que a tabela mining_type pertence ao mesmo</p>
+
+<hr>
+
+<h1>Associacao has_many</h1>
+<p>has_many na traducao significa "tem muitos"</p>
+<p>has_many basicamente e o inverso do belongs_to</p>
+<p>has_many :coins, coins no plural pois esta se referindo a tabela coins</p>
+
+<hr>
+
+<h1>Ajustando a task dev:add_coins</h1>
+<p>Um jeito de nao dar erro e usar o "optional: true" no belongs_to, porem desse jeito o rails cria a moeda com o mining_type vazio</p>
+<p>Outro jeito e usando o find_by para achar um elemento em especifico ou o sample para sortear um elemento, direntamente no mining_type</p>
+<p>Ex: mining_type: MiningType.find_by(acronym: "PoW")</p>
+<p>Ex: mining_type: MiningType.all.sample</p>
+
+<hr>
+
+<h1>Utillzando o helper select</h1>
+<p>select("coin", "mining_type_id", MiningType.all.collect { |m| [m.description, m.id]}, {include_blank: true })</p>
+<p>O select o primeiro parametro e o objeto que no caso e o "coin" mas se estiver usando o form_with fica de um jeito diferente form.select(...), o segundo parametro e o campo que vai ser trabalhado no caso "mining_type_id", o terceiro e pra pegar os dados na tabela no caso vai ser MiningType.all.collect, o quarto e caso queira deixar um campo em branco include_blank: true pode tambem colocar a palavra que quiser basta escrever entre aspa no lugar do true "selecione"</p>
+<p>Pra funcionar a mudanca deve adicionar ":mining_type_id", la no controller coins, no metodo "coin_params", o mining_type_id deve ser um simbolo ira ficar: "params.require(:coin).permit(:description, :acronyum, :url_img, :mining_type_id)"</p>
+<p>Usar MiningType.all.collect nao e o mais certo a se fazer devido ao MVC, pois a view nao deve acessar dados no model, o certo e a o controller acessar o model e a view pegar esses dados do controller</p>
+
+<hr>
+
+<h1>Padronizando o select ao MVC</h1>
+<p>O metodo pluck funciona igual o map, porem os dados que deseja mapear deve ser passado em formato e simbolo, ex: array.pluck(:description)</p>
+<p>Primeiramente cria um metodo no controller coin, e dentro dele coloca "MiningType.all.pluck(:description, :id)"</p>
+<p>Depois disso precisa de um filtro para o metodo ser chamado "before_action :set_mining_type_options, only: [:new, :create, :edit, :update]"</p>

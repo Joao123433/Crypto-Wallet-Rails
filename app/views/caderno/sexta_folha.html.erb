@@ -1,0 +1,101 @@
+<h1>Usando a aplicacao com varios idiomas em tempo de execucao</h1>
+<p>
+  <pre>
+    Basta colocar esse codigo no aplication_control, o pai de todos os controller
+    def set_locale
+      if params[:locale]
+        cookies[:locale] = params[:locale]
+      end
+
+      if cookies[:locale]
+        if I18n.locale != cookies[:locale]
+          I18n.locale = cookies[:locale]
+        end
+      end
+    end
+  </pre>
+</p>
+<p>Idioma da aplicacao: <strong><%= t('actual_locale') %></strong></p>
+
+<hr>
+
+<h1>Conhecendo o assets pipeline</h1>
+<p>O asset pipiline convem um framework para concatenar, minificar ou comprimir javascript, css e imagem</p>
+<p>O asset pipiline permite que seja inserido codigos ruby dentro de um codigo html, css, js</p>
+<p>O asset pipiline na verdade e uma gem chamada sprockets-rails que foi unidicada ao rails, e ela ja em instada por padrao na aplicacao rails</p>
+<p>Fingerprint: nada mais e do que alterar o nome do css para sempre que tiver uma mudanca o rails chamar de novo o arquivo, com um nome randomizado ex(um arquivo chamado global.css, iria ficar global-908e25f4bf641868d8683022a5b62f54.css), esse numeros sempre mudam</p>
+<p>Os assets devem ficar em pastas especificas:</p>
+<p><strong>app/assets: </strong>Para assets criados pelo rails</p>
+<p><strong>lib/assets: </strong>Para assets que vc mesmo criou</p>
+<p><strong>vendor/assets: </strong>Para assets que vc pegou 'pegou' de terceios</p>
+
+<hr>
+
+<h1>Pre-compilando e isolando assets por controller</h1>
+<p>Podemos usar o parametro 'params[:controller]' para identificar qual controller esta sendo invocado na request</p>
+<p>Desta forma podemos aproveitar e isolar o CSS e JS para serem carregados de acordo com o controller, ficara assim: </p>
+<p>stylesheet_link_tag params[:controller], "data-turbo-track": "reload"</p>
+<p>No rails 5.1 pra cima foi mudado o jeito de usar o asset pipiline, agora o webpacker do javascript esta no lugar</p>
+
+<hr>
+
+<h1>Usando o asset pipiline</h1>
+<p>Usando codigo ruby em um arquivo CSS, JS</p>
+<p>Basta colocar o .erb no final do nome do arquivo, background-color: Rails.env.development? ? 'yellow' : 'red'</p>
+<p>Para usar o SASS tem que habilitar a gem no arquvo gemfile</p>
+
+<hr>
+
+
+<h1>Usando tasks para pre-compilar assets</h1>
+<p>Para funcionar o ambiente de producao, primeiro tem que pre-compilar os assets, ja que o rails so compila no ambiente test e desenvolvimento</p>
+<p>Para isso basta utilizar 'rails assets:precompile'</p>
+<p>Para apagar os assets compilados basta usar 'rails assets:clobber'</p>
+
+<hr>
+
+<h1>Usando uma biblioteca JS de terceiros</h1>
+<p>Existe 3 formas de usar uma bilbioteca JS no rails</p>
+<p>A primeira e baixando a bibioteca colocando na pasta <strong>vendor/assets</strong></p>
+<p>Usa-se o wget url_da_biblioteca, para baixar</p>
+<p>Para a biblioteca funcionar tem que colocar '//= require nome_do_arquivo_da_biblioteca' dentro de application.js que fica dentro de <strong>app/javascript</strong></p>
+<p>Ou usando javascript_include_tag 'jquery', 'data-turbolinks-track': 'reload'</p>
+
+<hr>
+
+<h1>Usando uma biblioteca JS(rails-assets.org)</h1>
+<p>Essa biblioteca pega codigos e tranforma eles em gem, facilitando o uso no rails</p>
+<p>Se precisar de alguma bibioteca JS, basta procurar em https://rails-assets.org/#/components/notifyjs e ver se essa biblioteca ja existe uma gem feita</p>
+<p>Inicialmente apagamos todos os assets e pre-compilacoes que existem</p>
+<p>Essa e a forma antiga de se trabalhar com bibliotecas JS</p>
+
+<hr>
+
+<h1>Instalando o yarn</h1>
+<p>O yarn e um gerenciador de pacotes para biblioteca JS adotado ao rails apartir da versao 5.1, evitando qque precisamos informar ao asset pipeline os arquivos que devem ser pre-compilados</p>
+<p>Pra instalar basta usar o asdf</p>
+
+<hr>
+
+<h1>Usando o yarn</h1>
+<p>Basta utilizar 'yarn init'</p>
+<p>Para adicionar uma biblioteca basta usar 'yarn add nome_da_biblioteca'</p>
+<p>Pra funcionar tem que adicionar esse codigo Rails.application.config.assets.paths << Rails.root.join("node_modules") dentro de config/initializers/assets.rb</p>
+<p>Para que o rails busque os arquivos dentro da pasta node_modules</p>
+
+<hr>
+
+<h1>Para usar a pluralizacao dos nome como i18n</h1>
+<p>Basta usar: Nome_do_model.model_name.human(count: variavel_de_instancia.size)</p>
+
+<hr>
+
+
+<h1>Alterando a view show</h1>
+<p>Para usar o formulario da partial _form, tem que usar o label_tag e text_field_tag, no lugar de form.label e form.text_field </p>
+<p>Ira ficar assim </p>
+<p>label_tag nil, @coin.class.human_attribute_name(:url_img), style: "display: block"</p>
+<p>text_field_tag nil, @coin.url_img, class: 'form-control'</p>
+<p>Pra acessar o valor do i18n da classe @coin, tem que antes colocar .class dai sim colocar .human_attribute_name()</p>
+
+

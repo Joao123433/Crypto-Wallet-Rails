@@ -1,0 +1,35 @@
+<h1>Partials</h1>
+<p>Para criar uma partials tem que utilizar o underline antes (ex: _menu.html.erb)</p>
+<p>Para utilizar basta usar o helper render</p>
+<p>render "menu"</p>
+
+<hr>
+
+<h1>Layouts</h1>
+<p>Antes de renderizar as views o rails rendezira primeiro os layouts </p>
+<p>Toda view, partials passa pela application.html.erb</p>
+<p>O yield e a pagina em si, se for na url root o yield vai ser o welcome/index, na url /coins o yield vai ser o coins/index</p>
+<p>Se um codigo for escrito na application.html.erb, vai ser passado para todas as paginas</p>
+<p>Header e footer sao feitos na application para passar para todas as paginas do site</p>
+<p>Para setar um novo layout para uma pagina, basta ir para o controller a pagina e adicionar layout "nome_do_layout"</p>
+
+<hr>
+
+<h1>Fluxo mvc show e delete</h1>
+<p>Na action show, ela passa antes pelo filtro before_action para filtrar as moedas pelo id, e e enviada para a view atraves da variavel @coin</p>
+<p>Na action delete, a moeda e pesquisada pelo id e deletada, e retorna uma mensagem para a notice caso o formato seja em html</p>
+
+<hr>
+
+<h1>Fluxo mvc new e create</h1>
+<p>Uma novidade do rails 5 e o form_with, que basicamente cria uma tag html form, e basicamente precisa ser passado o nome do model, no caso coin que foi setada no render do form, ele envia para o controller com o metodo post(por baixo dos panos)</p>
+<p>Para gerar uma nova moeda sera usado inicialmente um path para um novo elemento coins/new</p>
+<p>Ao acessar esse path, o controller gera uma instancia vazia do model Coin(Coin.new)</p>
+<p>Isso fara como que a variavel @coin possua todos os campos vazios e permitira que o rails possa montar a view(new.html.erb) como um formulario para a nova moeda</p>
+<p>Na action create a moeda e criada com os dados que foram enviados do formulario, tudo atraves da variavel params</p>
+
+<hr>
+
+<h1>Fluxo mvc edit e update</h1>
+<p>Apos editar a moeda na view o usuario clicara no botao para atualiza-la</p>
+<p>O botao submetera as alteracoes via PATCH para a action update, que localiza e atualiza a moeda com os dados recebidos via params, apos isso o usuario e redirecionado para a action show, que mostra a moeda com as alteracoes</p>

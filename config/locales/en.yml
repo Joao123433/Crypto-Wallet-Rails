@@ -1,0 +1,21 @@
+en:
+  current_locale: English (International)
+  welcome: "Welcome!"
+  messages: 
+    welcome: This is the Cryto Wallet, an app that you can register and keep up with your criptocoins 
+    menu: 'To start, choose an option bellow: '
+  links:
+    edit: "Edit"
+    show: "Show"
+    delete: "Delete"
+    back: "Back"
+    new: "New"
+  new:
+    coin: New Coin
+    mining_type: New Mining Type
+  editing:
+    coin: Editing Coin
+    mining_type: Editing Mining Type
+  showing:
+    coin: Showing Coin
+    mining_type: Showing Mining Type

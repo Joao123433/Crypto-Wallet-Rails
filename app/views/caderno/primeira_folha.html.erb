@@ -1,0 +1,75 @@
+<h1>Seja bem vindo ao <%= nome_aplicacao.titleize %>!!</h1>
+<p>Soma: <%= 1 + 2 %></p> <%# o igual(=) serve para imprimir na tela, sem o igual o ruby calcula mas nao imprime na tela%>
+
+<hr>
+
+<p>Seu nome de tras para frente e: <%= "Joao Guilherme".reverse %></p> 
+<% ax = "Ola, mundo" %>
+<p>Imprimindo a variavel a: <%= ax %></p>
+
+<hr>
+
+<%# sempre prefirir usar codigo ruby do que html%>
+<%# o link_to faz a mesma coisa que a tag a do html %>
+<h3>Helper para link</h3>
+<%= link_to "Link para a documentacao do link_to", "https://apidock.com/rails/ActionView/Helpers/UrlHelper/link_to", :target => "_blank" %> <%# o caminho tem que ser passado entre aspas, se for o path nao precisa%>
+
+<hr>
+
+<h3>Helper para image</h3>
+<%# <%= link_to (image_tag "https://cdn-icons-png.flaticon.com/256/2875/2875404.png", size: "30x30"), "https://www.google.com" criando um link para uma imagem %>
+<%# <li><%= link_to (image_tag coin.url_img, size: "30x30"), caderno_primeira_folha_path << "/?mensagem=#{coin.url_img}" </li> %> 
+<%= image_tag "https://cdn-icons-png.flaticon.com/256/2875/2875404.png", size: "30x30" %>
+<%= link_to "Link para a documentacao do image-tag", "https://apidock.com/rails/ActionView/Helpers/AssetTagHelper/image_tag", :target => "_blank" %>
+
+<hr>
+
+<h3>Criando o proprio helper</h3>
+<p><strong>Helpers na aplication_helper.rb</strong></p>
+<p>Data de hoje: <%= data_br(Date.today) %></p>
+<p>Hora de hoje: <%= hora_now(Time.now) %></p>
+
+<hr>
+
+<h3>Comando do rails</h3>
+<% c = Coin.first %>
+<table class='table'>
+    <thead>
+        <tr>
+            <td>Descrisao</td>
+            <td>Sigla</td>
+            <td>Imagem</td>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td><%= c.description %></td>
+            <td><%= c.acronyum %></td>
+            <td><%= image_tag c.url_img, size: "25x25" %></td>
+        </tr>
+    </tbody>
+</table>
+<p>Coin.first, retorna somente um elemento</p>
+<p>Coin.last, retorna somente um elemento</p>
+<p>Coin.all, retorna todos os elemento que pode ser iterado pela each e imprimir algo especifico</p>
+
+<hr>
+
+<h3>Identificando o ambiente</h3>
+<p>Usa-se o Rails.env para saber o ambiente</p>
+<p>Usa-se o Rails.env.nome_do_ambiente (ex: .development?, .production?)</p>
+<p>Voce esta no ambiente de <%= ambiente_rails() %></p>
+
+<hr>
+
+<h3>Usa-se variavel de instacia para passar informacoes do controller para a view</h3>
+<p><%= @nome %></p>
+
+<hr>
+
+<h3>Passando paramentro pela url, usa-se o ? logo depois a chave e o valor (ex: http://localhost3000/?nome=joao)</h3>
+<p>Para passar mais de um parametro usa o E-comercial(&)</p>
+<p>Para acessar essa informacao basta acessar essa informacao no hash params (ex: params["nome"])</p>
+
+193d624fe33202ae45114af500c628499741960a489434044d6a8b9dce3dfc78d43497973e60d16af8445850b01ceab102da4f58a6565c280f1d01862460f96b
+

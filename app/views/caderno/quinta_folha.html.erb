@@ -1,0 +1,49 @@
+<h1>Ativando o i18n(internacionalization)</h1>
+<p>Serve para mudar a linguagem do site, internacionalizar o site</p>
+<p>Idioma usado nessa aplicacao: <strong><%= t('actual_locale') %></strong></p>
+<p>Primeiramente deve instalar a gem rails-i18n, depois criar um arquivo 'locale.rb' em config/initializers</p>
+<p>
+  Depois adicionar esse codigo ao locale, passando os idiomas
+  I18n.available_locales = [:en, 'pt-BR']
+  I18n.default_locale = 'pt-BR'
+</p>
+
+<hr>
+
+<h1>Usando o i18n</h1>
+<p>Em regras gerais o i18n tem dois metodosm, o metodo I18n.t() e o I18n.l()</p>
+<p>O primeiro vem de translate, onde inforamamos uma chave e recebemos uma traducao, baseada em arquivos YAML que fica na pasta config/locales.</p>
+<p><%= t('hello') %></p>
+<p>Na view nao e necessario colocalar o I18n, basta so colocar t('hello'), o hello dentro do parantese nao e a palavra e sim a chave</p>
+<p>ja no segundo metodo I18n.l(), que vem de 'localize' e tem a funcao de deixar datas e horas no formato da localidade atual</p>
+<p><%= I18n.l(Date.today) %></p>
+<p>Para comecar a traduzir basta criar um arquivo na pasta config/local, com o mesmo nome do config/initializers/locale.rb, nesse caso pt-BR.yml</p>
+<p>A estrutura deve ser feita no formato YAML</p>
+
+<hr>
+
+<h1>Aplicando i18n para o models</h1>
+<p>Para usar i18n para traducao dos modulos, deve criar um novo arquivo com o nome do idioma seguido de _models, ex: pt-BR_models.yml</p>
+<p>Dai dentro desse arquivo coloca 
+pt-BR:
+  activerecord:
+    models:
+      coin: Moeda
+      mining_type: Tipo de Mineracao
+    attributes:
+      coin:
+        description: Descrisao
+        ...
+      mining_type:
+        description:Descrisao
+        ...
+</p>
+<p>Para traduzir os nome dos campos basta utilizar Model.human_attribute_name(attribute), onde model e o nome do model(ex: Coin, MiningType) e o attribute o nome do atributo(ex: description, acronym)</p>
+
+<hr>
+
+<h1>Cookies e Sessions</h1>
+<p>Para criar um cookie basta ir no controller e colocar 'cookies[:nome_da_chave] = "Valor armazenado no cookie'</p>
+<p>Para acessar esse cookie de dentro da view basta colocar cookies[:nome_da_chave] dentro de um render block</p>
+<p><%= cookies[:curso] %></p>
+<p>A session funciona do mesmo jeito, basta so trocar cookies por session no singular, uma diferenca importante e que o cookie fica salvo, mesmo saindo da pagina, ja a session nao, a session basicamente pode ser considerada uma variavel de sessao </p>

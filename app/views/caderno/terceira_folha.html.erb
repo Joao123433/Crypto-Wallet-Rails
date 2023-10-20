@@ -1,0 +1,42 @@
+<h1>Permissoes de parametros</h1>
+<p>A permissao de parametros e uma pratica que visa informar quais dados que estao chegando ao controller sao permitidos para serem manipulados</p>
+<p>O rails trata isso atraves do framework ActionController e nos da os metodos require(o nome da chave do hash params, caso desse exemplo coin) e permit(quais dados podem ser manipulados)</p>
+
+<hr>
+
+<h1>Task db:seed</h1>
+<p>Serve para criar dados antes do inicio da aplicacao</p>
+<p>Para reiniciar o banco de dados: rails db:drop db:create db:migrate db:seed</p>
+
+<hr>
+
+<h1>Criando uma rake task</h1>
+<p>Para criar uma task, basta escrever no console "rails g taks primeiro_parametro(namespace, ex: db, test, dev) segundo_parametro(nome da task, ex: create, seed, migrate, drop, setup)"</p>
+<p>desc e a descrisao da task</p>
+<p>Para criar uma nota taks basta usar "task nome_da_taks: :environment do end"</p>
+<p>%x serve para rodar comando de terminal dentro do rails</p>
+<p>Para chamar basta usar rails dev:setup</p>
+
+<hr>
+
+<h1>Refatorando a task dev:setup</h1>
+<p>Usando a gem tty-spinner para deixar o terminal mais intuitivo durante as operacoes</p>
+<p>o yield serve para receber um bloco de codigo dentro de um metodo</p>
+
+<hr>
+
+<h1>Refatorando o seed.rb com o metodo find_or_create_by</h1>
+<p>find_or_create_by verifica se ja existe os resultado no banco de dados, se existir ele nao cria, se nao existir ele cria, funciona parecido com o toggle do javascript</p>
+
+<hr>
+
+<h1>Criando o segundo crud</h1>
+<p>Foi passado os dados do seeds.rb para a dev.rake, criando um metodo para inserir as moedas no banco de dados</p>
+<p>Foi criando duas task uma para adicionar e outra para as moedas e os tipos de mineracao</p>
+
+<hr>
+
+<h1>Mudando o nome de uma campo no migrate</h1>
+<p>Rode "rails db:roolback", para apagar a tabela mining_tpes</p>
+<p>Logo em seguida rode "rails d scaffold MiningType</p>
+<p>E depois rode "rails g scaffold MiningType description:string acronym:string"</p>

@@ -1,0 +1,19 @@
+# fly.toml app configuration file generated for crypto-wallet-rails on 2023-10-19T21:33:46-03:00
+#
+# See https://fly.io/docs/reference/configuration/ for information about how to use this file.
+#
+
+app = "crypto-wallet-rails"
+primary_region = "gru"
+console_command = "/app/bin/rails console"
+
+[build]
+
+[[services]]
+  internal_port = 3000
+  script = "./bin/rails server -b 0.0.0.0"
+
+[env]
+  RAILS_ENV = "production"
+  SECRET_KEY_BASE = "193d624fe33202ae45114af500c628499741960a489434044d6a8b9dce3dfc78d43497973e60d16af8445850b01ceab102da4f58a6565c280f1d01862460f96b"
+
