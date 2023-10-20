@@ -25,15 +25,18 @@ Recomendo o uso do [ASDF](https://asdf-vm.com/) para gerenciar versões do Ruby.
    cd nome-do-projeto
 
 2. Instale as Dependências
+    ```bash
     gem install bundler
     bundle
     yarn install
 
 3. Crie e Migre o Banco de Dados
+    ```bash
     rails db:create
     rails db:migrate
 
-4. Inicie o Servido
+4. Inicie o Servidor
+    ```bash
     rails s
 
 # Acesse a aplicação em http://localhost:3000.
