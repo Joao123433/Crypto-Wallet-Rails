@@ -2,7 +2,7 @@
 
 ## Projeto desenvolvido durante o Curso de Rails do Jackson Pires
 
-Este projeto é resultado do curso de Rails 7 oferecido por Curso Ruby on Rails 5.x - Do início ao fim!. Durante o curso, exploramos os conceitos fundamentais do desenvolvimento web com Ruby on Rails e utilizamos o banco de dados SQLite3 para persistência de dados.
+Este projeto é resultado do curso de Rails 7 oferecido por Curso Ruby on Rails 5.x - Do início ao fim!. Durante o curso, foi explorado os conceitos fundamentais do desenvolvimento web com Ruby on Rails e utilizando o banco de dados SQLite3 para armazenar os dados.
 
 ## Acesse o Projeto em
 
@@ -21,8 +21,8 @@ Recomendo o uso do [ASDF](https://asdf-vm.com/) para gerenciar versões do Ruby.
 
 1. Clone este repositório:
    ```bash
-   git clone https://github.com/seu-usuario/nome-do-projeto.git
-   cd nome-do-projeto
+   git clone https://github.com/Joao123433/Crypto-Wallet-Rails
+   cd Crypto-Wallet-Rails
 
 2. Instale as Dependências
     ```bash
